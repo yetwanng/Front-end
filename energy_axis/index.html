@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/ui-lightness/jquery-ui.css" />
+    <link href="css/evol.colorpicker.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+
+<body>
+<h1>
+    Energy diagram
+</h1>
+<div id="container-1">
+
+<div id="energy_diagram">
+<canvas id="canvas" width="800" height="600"></canvas>
+</div>
+<div id="parameters-set">
+    <div id="parameters">
+        <input id="material" type="text" value="material" style="width: 100px;" />
+        <input id="ConductionBandBottom" type="text" value="conduction" style="width: 100px;" />
+        <input id="ValenceBandTop" type="text" value="valence" style="width: 100px;" />
+    </div>
+
+    <div id="operation">
+        <button id="plot">plot</button>
+        <button id="add" value="Add">add new +</button>
+        <button id="delete" value="Delete">clear graphs</button>
+    </div>
+
+    <div id="colors" >
+        <input style="width: 100px;" id="my-color" value="set color" class="colorPicker evo-cp0" />
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+<script src="js/evol.colorpicker.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/energy_diagram.js"></script>
+</html>

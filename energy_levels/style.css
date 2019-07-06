@@ -1,0 +1,24 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #ffffff;
+}
+input {
+    border: solid 1px #DDD;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+button {
+    border: solid 1px #000000;
+    border-radius: 5px;
+    background-color: #aaaaaa;
+    padding: 5px 10px;
+}
+#quadrant {
+    border: solid 0px #eeeeee;
+    background-color: #ffffff;
+    width: 640px;
+    height: 640px;
+    margin: 0 auto;
+    position: fixed;
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>本地天气预报</title>
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <h2>获取本地天气</h2>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="cityname" class="col-sm-2 control-label">城市名称:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="cityname" name="cityname" value="北京"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="userkey" class="col-sm-2 control-label">秘钥:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="userkey" name="userkey" value="a1e872a7fc29dc65692beb7ac9e5d881"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-default" value="提交" id="submit" name="submit">提交</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <p><strong>天气详情为：</strong></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="province" class="col-sm-2 control-label">province:</label>
+            <div class="col-sm-10">
+                <p id="province" class="form-control">
+                    data
+                </p>
+            </div>
+
+            <label for="city" class="col-sm-2 control-label">city:</label>
+            <div class="col-sm-10">
+                <p id="city" class="form-control">
+                    data
+                </p>
+            </div>
+
+            <label for="weather" class="col-sm-2 control-label">weather:</label>
+            <div class="col-sm-10">
+                <p id="weather" class="form-control">
+                    data
+                </p>
+            </div>
+
+            <label for="temperature" class="col-sm-2 control-label">temperature:</label>
+            <div class="col-sm-10">
+                <p id="temperature" class="form-control">
+                    data
+                </p>
+            </div>
+
+            <label for="winddirection" class="col-sm-2 control-label">winddirection:</label>
+            <div class="col-sm-10">
+                <p id="winddirection" class="form-control">
+                    data
+                </p>
+            </div>
+
+            <label for="windpower" class="col-sm-2 control-label">windpower:</label>
+            <div class="col-sm-10">
+                <p id="windpower" class="form-control">
+                    data
+                </p>
+            </div>
+
+            <label for="humidity" class="col-sm-2 control-label">humidity:</label>
+            <div class="col-sm-10">
+                <p id="humidity" class="form-control">
+                    data
+                </p>
+            </div>
+
+            <label for="reporttime" class="col-sm-2 control-label">reporttime:</label>
+            <div class="col-sm-10">
+                <p id="reporttime" class="form-control">
+                    data
+                </p>
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </form>
+
+
+</div>
+<script>
+
+
+
+    /*
+    Code by Ye Wang
+    */
+    var cityname ="";
+    var userkey = "";
+    var url = "";
+
+    function localweather(url)
+    {
+        xmlhttp=null;
+        if (window.XMLHttpRequest)
+        {// code for IE7, Firefox, Opera, etc.
+            xmlhttp=new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject)
+        {// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        if (xmlhttp!=null)
+        {
+
+            xmlhttp.open("GET",url,true);
+            xmlhttp.send(null);
+            xmlhttp.onreadystatechange=state_Change;
+        }
+        else
+        {
+            alert("Your browser does not support XMLHTTP.");
+        }
+
+    }
+    function state_Change()
+    {
+        if (xmlhttp.readyState==4)
+        {// 4 = "loaded"
+            if (xmlhttp.status==200)
+            {// 200 = "OK"
+
+                // document.getElementById('weatherdata').innerHTML=xmlhttp.responseText;
+                var jsonText = xmlhttp.responseText;
+                var  returnValue = eval("(" + jsonText + ")");
+                document.getElementById('province').innerHTML= returnValue.lives[0].province;
+                document.getElementById('city').innerHTML= returnValue.lives[0].city;
+                document.getElementById('weather').innerHTML= returnValue.lives[0].weather;
+                document.getElementById('temperature').innerHTML= returnValue.lives[0].temperature;
+                document.getElementById('winddirection').innerHTML= returnValue.lives[0].winddirection;
+                document.getElementById('windpower').innerHTML= returnValue.lives[0].windpower;
+                document.getElementById('humidity').innerHTML= returnValue.lives[0].humidity;
+                document.getElementById('reporttime').innerHTML= returnValue.lives[0].reporttime;
+
+            }
+            else
+            {
+                alert("Problem retrieving XML data:" + xmlhttp.statusText);
+            }
+        }
+    }
+    $("#submit").click(function(){
+        cityname =$("#cityname").val();
+        userkey = $("#userkey").val();
+        url = "http://restapi.amap.com/v3/weather/weatherInfo?city=" + cityname +"&key=" + userkey;
+        localweather(url);
+    });
+
+
+
+
+</script>
+
+</body>
+
+</html>
