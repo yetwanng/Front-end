@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+
+
+
+
+</body>
+
+<script>
+    var playerlist = [];
+
+    var playerNum = 5;
+    var player ={
+        order: 0,
+        cards: [],
+        NIU: null,
+        muti:1,
+        facecardsCount:0,
+        dealer:false,
+        money:0
+    };
+    for (var i= 0;i<playerNum; i++ ) {
+        playerlist.push(player);
+        playerlist[i].order = i;
+    }
+    cardCurrentValue = {
+        type:'block',
+        value:'A'
+    };
+
+
+    for (i = 0; i<playerNum; i++) {
+        for (var j = 0; j < 5; j++) {
+            playerlist[i].cards[j] = cardCurrentValue;
+        }
+    }
+alert(playerlist[0].cards[0].type);
+
+</script>
+
+
+</html>
